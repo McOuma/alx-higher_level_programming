@@ -1,3 +1,3 @@
 #!/bin/bash
-# Command to display the size of the content in a headr
-curl -sI $1 | grep Content-Length | cut -d" " -f2
+# cURL get body size
+curl -sI "$1" | grep -i Content-Length | awk '{print $2}'
