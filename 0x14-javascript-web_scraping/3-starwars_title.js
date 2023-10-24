@@ -1,12 +1,15 @@
 #!/usr/bin/node
-
-const req = require('request');
-const url = 'https://swapi-api.hbtn.io/api/films/';
-const id = process.argv[2];
-req.get(url + id, function (error, res, body) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log(JSON.parse(body).title);
+/**
+  prints the title of a Star Wars movie
+  where the episode number matches a given integer
+  usage: ./3-starwars_title.js id
+ */
+const myArgs = process.argv.slice(2);
+const request = require('request');
+const url = 'https://swapi-api.hbtn.io/api/films/' + myArgs[0];
+request(url, function (error, response, body) {
+  if (!error) {
+    const json_ = JSON.parse(body);
+    console.log(json_.title);
   }
 });
